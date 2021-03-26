@@ -1,0 +1,26 @@
+div#root {}
+
+.todo-wrapper {
+    margin: 20px 20px;
+    /* text-align: center; */
+}
+
+input.todo-input-box,.search-input-box {
+    padding: 6px 0;
+    margin: 0 10px;
+}
+
+button.add-btn {
+    padding: 6px;
+}
+
+.todo-list ul li {
+  list-style: none;
+  position: relative;
+  display: flex;
+  padding: 20px 0;
+}
+.todo-list {
+  padding: 0 10px;
+  width: 50%;
+}
