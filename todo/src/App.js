@@ -1,5 +1,5 @@
 import React from 'react';
-// import logo from './logo.svg';
+import ProductList from './components/ProductList/ProductList';
 import  './App.css';
 
 
@@ -63,8 +63,7 @@ class App extends React.Component {
               this.state.list.map(item => {
                   console.log(item)
                   if (item.value.includes(this.state.searchText))
-                  return(
-
+                      return(
                       <li key={item.id}>
                       <div>{item.value}</div>
                       <button className='delete-btn' onClick = { () => this.deleteItem(item.id)} >Delete</button>
@@ -77,9 +76,9 @@ class App extends React.Component {
               )}
           </ul>
         </div>
+        <ProductList />
       </div>
     )
-
   }
 }
 
