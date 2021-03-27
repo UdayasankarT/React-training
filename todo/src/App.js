@@ -5,12 +5,19 @@ import  './App.css';
 
 class App extends React.Component {
 
-  state ={
-    newItem:'',
-    list : [
-    ],
-    searchText: ''
-  }
+	constructor(props) {
+		super(props);
+		this.onCategory = this.onCategory.bind(this)
+		this.state ={
+			newItem:'',
+			list : [],
+			searchText: '',
+			filters: [],
+			priceValue:'0'
+		}
+	}
+
+  
 
   
 
@@ -38,7 +45,24 @@ class App extends React.Component {
     console.log(updatedlist)
     this.setState({list: updatedlist})
   }
+	
+	onCategory = (value,checked) => {
+		console.log(checked);
+		
+		const filter = [...this.state.filters]
+		if (checked) {
+    filter.push(value)
+		} else {
+			filter.splice(filter.indexOf(value),1)
+		}
+    this.setState({filters:filter		})
+		console.log(this.state.filters)
+	}
 
+	onPriceChange = (priceRange)=>{
+		// const priceValue = [...this.state.priceValue]
+		this.setState({priceValue: priceRange})
+	}
 
   render(){
     return(
@@ -61,7 +85,6 @@ class App extends React.Component {
           <ul>
             {
               this.state.list.map(item => {
-                  console.log(item)
                   if (item.value.includes(this.state.searchText))
                       return(
                       <li key={item.id}>
@@ -75,8 +98,11 @@ class App extends React.Component {
               }
               )}
           </ul>
-        </div>
-        <ProductList />
+				</div>
+				<ProductList onCategory={this.onCategory}
+					onPriceChange={this.onPriceChange}
+					filters={this.state.filters}
+					priceValue={ this.state.priceValue}/>
       </div>
     )
   }
